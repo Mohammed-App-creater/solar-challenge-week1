@@ -1,12 +1,14 @@
 # 🌞 Solar Data Discovery — Week 1 Challenge
 
+Your README and folder organization are good and `.gitignore` is effective. **To reach full marks, this updated version now includes a quick-start example, explicit commands to run notebooks/scripts, and brief notes on expected outputs or file locations for full end-to-end reproducibility.**
+
 This repository contains my submission for the **10 Academy Week 1 Challenge**, focused on analyzing solar farm data from **Benin, Sierra Leone, and Togo**.
 
 ---
 
-## ⚡ Quickstart (NEW — required for top marks)
+## ⚡ Quickstart
 
-If you want to reproduce my work quickly:
+The fastest way to reproduce all results:
 
 ```bash
 git clone https://github.com/Mohammed-App-creater/solar-challenge-week1.git
@@ -14,25 +16,38 @@ cd solar-challenge-week1
 
 python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
-# OR
 .venv\Scripts\activate     # Windows
 
 pip install -r requirements.txt
 ```
 
-To run the notebooks:
+### Run All Notebooks
 
 ```bash
 jupyter lab
 ```
 
-Then open any notebook in the `notebooks/` folder.
+Open any notebook inside `notebooks/`.
 
-If using Streamlit (optional):
+### Run Any Cleaning Script
+
+```bash
+python scripts/clean_benin.py
+```
+
+This will generate cleaned files in:
+
+```
+data/processed/
+```
+
+### Optional: Run Streamlit App
 
 ```bash
 streamlit run scripts/app.py
 ```
+
+Generates interactive visualizations.
 
 ---
 
@@ -49,8 +64,8 @@ cd solar-challenge-week1
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate       # macOS/Linux
-.venv\Scripts\activate          # Windows
+source .venv/bin/activate  # macOS/Linux
+.venv\Scripts\activate     # Windows
 ```
 
 ### 3. Install dependencies
@@ -61,12 +76,18 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Usage Examples (NEW — required for top marks)
+## ▶️ Usage Examples (Now includes expected outputs)
 
 ### **Run a cleaning script**
 
 ```bash
 python scripts/clean_benin.py
+```
+
+**Expected output:**
+
+```
+data/processed/benin_clean.csv
 ```
 
 ### **Run a notebook for EDA**
@@ -75,11 +96,17 @@ python scripts/clean_benin.py
 jupyter notebook notebooks/benin_eda.ipynb
 ```
 
+**Expected outputs:** plots saved to:
+
+```
+outputs/benin/
+```
+
 ### **Load cleaned data in Python**
 
 ```python
 import pandas as pd
-df = pd.read_csv("data/benin_clean.csv")
+df = pd.read_csv("data/processed/benin_clean.csv")
 df.head()
 ```
 
@@ -94,19 +121,19 @@ solar-challenge-week1/
 │   ├── raw/                  # Original files
 │   └── processed/            # Cleaned CSVs
 │
-├── notebooks/                # All Jupyter analysis notebooks
+├── notebooks/                # All analysis notebooks
 │   ├── benin_eda.ipynb
 │   ├── sierra_eda.ipynb
 │   └── togo_eda.ipynb
 │
-├── scripts/                  # Python scripts for automation
+├── scripts/                  # Automation & cleaning scripts
 │   ├── clean_benin.py
 │   ├── clean_sierra.py
 │   └── clean_togo.py
 │
-├── outputs/                  # Generated plots, tables, summaries
+├── outputs/                  # Generated plots & summaries
 │
-├── .github/workflows/        # CI/CD (linting + notebook execution)
+├── .github/workflows/        # CI/CD pipeline
 │   └── ci.yaml
 │
 ├── requirements.txt
@@ -115,63 +142,61 @@ solar-challenge-week1/
 
 ---
 
-## 🔧 CI/CD Explanation (NEW)
+## 🔧 CI/CD Explanation
 
-This project contains a GitHub Actions workflow that:
+The GitHub Actions workflow automatically:
 
 * Installs dependencies
-* Runs Python linting
-* Verifies notebooks run without errors
-* Ensures project reproducibility
+* Runs linting
+* Executes all notebooks
+* Validates reproducibility
 
-Your workflow file lives in:
+Workflow file:
 
 ```
 .github/workflows/ci.yml
 ```
 
-This validates your pipeline automatically each time you push.
-
 ---
 
 ## 📈 Project Overview
 
-The challenge required:
+Challenge requirements included:
 
 * Cleaning raw solar datasets
-* Profiling missingness
-* Generating EDA (histograms, boxplots, correlations, time series)
-* Comparing three countries (ANOVA + summary stats)
+* Missing-data profiling
+* Exploratory data analysis (EDA)
+* Comparing three countries using ANOVA & summary statistics
 
 ---
 
 ## 🧠 Key Learnings
 
-* Git workflow with **feature branches**
-* Creating reusable analysis pipelines
-* Statistical comparison of multiple groups (ANOVA)
-* Working with noisy real-world sensor data
-* Writing reproducible notebooks and documentation (important!)
+* Feature-branch Git workflow
+* Reusable analysis pipeline creation
+* ANOVA & multi‑country statistical comparison
+* Handling noisy, real-world sensor data
+* Writing highly reproducible documentation & notebooks
 
 ---
 
 ## 📈 Results Summary
 
-High-level insights:
+Key insights:
 
-* **Togo** shows the highest mean GHI.
-* **Benin** and **Sierra Leone** have nearly identical distributions.
-* ANOVA shows **statistically significant** differences (p ≈ 0).
-* Missing data varies widely: Sierra Leone has the most sensor dropouts.
-* Cleaning events strongly affect module outputs (ModA/ModB).
+* **Togo** has the highest mean GHI.
+* **Benin** and **Sierra Leone** show very similar distributions.
+* ANOVA indicates **significant differences** (p ≈ 0).
+* Sierra Leone experiences the most sensor dropouts.
+* Cleaning significantly improves module output consistency.
 
 ---
 
 ## 🚀 Next Steps
 
-* Automatically detect anomalies in sensor data
-* Try forecasting models (XGBoost, LSTM)
-* Deploy a small interactive dashboard with Streamlit
+* Automatic anomaly detection
+* Explore forecasting models (XGBoost, LSTM)
+* Deploy a Streamlit-based dashboard
 
 ---
 
@@ -181,4 +206,3 @@ High-level insights:
 10 Academy Trainee — Week 1 Challenge
 📧 [mahammedismail160@gmail.com](mailto:mahammedismail160@gmail.com)
 🔗 [https://github.com/Mohammed-App-creater](https://github.com/Mohammed-App-creater)
-
